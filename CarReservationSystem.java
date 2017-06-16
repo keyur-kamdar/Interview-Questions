@@ -9,19 +9,15 @@ public class CarSystem
 	HashMap<Integer, UsedCarNode> inUse;
 	HashMap<String, UsedCarNode> numPlateMap;
 
-
 	public CarSystem(){
 		availableCars = new HashMap<Integer, Queue<String>>();
 		inUse = new HashMap<Integer, UsedCarNode>();
 		numPlateMap = new HashMap<String, UsedCarNode>();
 	}
-
-
+    
 	public static void main(String[] args)
 	{
-
 		CarSystem c = new CarSystem();
-
 
 		// Trucks
 		Queue<String> quCars = new LinkedList<String>();
@@ -29,7 +25,6 @@ public class CarSystem
 		quCars.offer("POI345");
 		quCars.offer("TRE567");
 		c.availableCars.put(1, quCars);
-
 
 		// Cars
 		quCars = new LinkedList<String>();
@@ -43,14 +38,11 @@ public class CarSystem
 		System.out.println(c.bookACar(1));
 		System.out.println(c.bookACar(1));
 
-
 		System.out.println(c.dropACar("TRE567"));
 		System.out.println(c.dropACar("POI345"));
 		System.out.println(c.dropACar("POI345"));
-
 		System.out.println(c.bookACar(1));
 		System.out.println(c.bookACar(1));
-
 	}
 
 	public String bookACar(Integer carType){
@@ -66,39 +58,29 @@ public class CarSystem
 			}
 			else{
 				inUse.put(carType, node);
-			}
-
-		return numPlate;
-
-		}
-		else{
+			} 
+		    return numPlate;
+		}else{
 			return "car not available";  
 		}
-
 	}
 	public boolean dropACar(String numPlate){
 		if(numPlateMap.get(numPlate) == null) {
 			return false; 
 		}
-
 		UsedCarNode node = numPlateMap.get(numPlate);
 		numPlateMap.remove(numPlate);
-
 		if(node.left != null){
 			node.left.right = node.right;
 			node.right.left = node.left;
 		}
-
 		availableCars.get(node.carType).offer(numPlate);
-
 		int carType = node.carType;
 		node = null;
 		if(inUse.get(carType) == null){
 			inUse.remove(carType); 
 		}
-
-	return true;
-
+	    return true;
 	}
 }
 
@@ -107,7 +89,6 @@ class UsedCarNode{
 	UsedCarNode left = null;
 	UsedCarNode right = null;
 	Integer carType;
-
 	public UsedCarNode(String numPlate, Integer carType){
 		this.numPlate = numPlate; 
 		this.carType = carType;
