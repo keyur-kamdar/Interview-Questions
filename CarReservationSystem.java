@@ -2,7 +2,6 @@
 import java.lang.Math; 
 import java.util.*;
 
-
 public class CarSystem
 {
 	HashMap<Integer, Queue<String>> availableCars;
