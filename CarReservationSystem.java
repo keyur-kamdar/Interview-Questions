@@ -54,8 +54,7 @@ public class CarSystem
 				head.left = node;
 				node.right = head;
 				inUse.put(carType, node);
-			}
-			else{
+			}else{
 				inUse.put(carType, node);
 			} 
 		    return numPlate;
